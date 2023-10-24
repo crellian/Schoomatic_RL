@@ -1,0 +1,47 @@
+
+
+addresses: [[192.168.0.192, 2117], [192.168.0.192, 2132], [192.168.0.192, 2159],
+            [192.168.0.192, 2240], [192.168.0.192, 2066], [192.168.0.192, 2069], # iGpu2
+            [192.168.0.184, 2036], [192.168.0.184, 2042], [192.168.0.184, 2291], [192.168.0.184, 2339], # iGpu3
+            [192.168.0.21, 2000], [192.168.0.21, 2003],
+            [192.168.0.21, 2006], [192.168.0.21, 2009],
+            [192.168.0.21, 2078], [192.168.0.21, 2213],
+            [192.168.0.21, 2393], [192.168.0.21, 2084],
+            [192.168.0.21, 2090], [192.168.0.21, 2051]    # iGpu25
+        ]
+
+debug_mod: False
+timeout: 10  # this is in seconds
+synchronous: False  # dont worry about this
+delta_seconds: -1 # dont worry about this
+fps: 30 # dont worry about this
+server_display: False # dont worry about this
+
+render_hud: False # if we want hud showing on the client side for debugging
+rgb_display: False #if we want rgb_display on hud
+rgb_viewer_res: [1280, 720] #only if rgb_display is activated
+bev_display: False #if we want bev display on hud
+bev_viewer_res: [128, 128] #only if bev_display is activated
+rgb_obs: False #if we want the fpv observation
+rgb_obs_res: [84, 84] #only is activated if rgb_obs is true
+bev_obs: True #if we want the bev observation
+bev_obs_res: [42, 42] #only is activated if bev_res is true
+horizontal_fov: 80.0
+
+task_config:
+    {
+        max_timesteps: 1000,  # max timesteps for the episode
+        town: "Town05",
+        src_loc: None, #if its None generate randomly
+        dst_loc: [27, -72], #if its None generate randomly
+        pedestrian_fq: 30.0, # not being used for now, 0.0 -> 100.0, how many moving pedestrians on the curb and the crosswalk
+        vehicle_fq: 23.0, # not being used for now, 0.0 -> 100.0, how many moving vehicles on the road
+        pedestrian_obstacle_fq: 0.0, # not being used for now, 0.0 -> 100.0 how many static pedestrian obstacles in the scene
+        vehicle_obstacle_fq: 8.0, # not being used for now, 0.0 -> 100.0 how many static vehicle obstacles in the scene
+        sparse_reward_fn: False, #if its false then implement the reward fn we talked about
+        goal_reward: "propdist", #goal reward proportional to the distance
+        goal_tolerance: 1,
+        terminate_reward: -1000.0,
+    }
+action_smoothing: 0  # dont worry about this
+
